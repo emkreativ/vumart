@@ -32,7 +32,7 @@ def index(request):
             "new_products": new_products,
             "posts": posts,
         }
-        return render(request, "mobile/page/index.html", context)
+        return render(request, "desktop/page/index.html", context)
     else:
         if request.method == 'POST' and request.POST.get("type") == 'unvan':
             for a in request.user.addresses.all():
