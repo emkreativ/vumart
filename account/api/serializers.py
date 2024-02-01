@@ -25,8 +25,8 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('password', 'password2', 'username', 'first_name', 'last_name',)
-        extra_kwargs = {'first_name': {'required': True},'last_name': {'required': True}}
+        fields = ('telephone','email','representer','company_name','password', 'password2', 'username',)
+        extra_kwargs = {'email': {'required': True},'telephone': {'required': True},'company_name': {'required': True}}
 
     def validate(self, attrs):
         if attrs['password'] != attrs['password2']:
@@ -34,7 +34,12 @@ class UserCreateSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
-        user = User.objects.create(username=validated_data['username'],first_name=validated_data['first_name'],last_name=validated_data['last_name'])
+        user = User.objects.create(username=validated_data['username'],
+                                   telephone=validated_data['telephone'],
+                                   email=validated_data['email'],
+                                   company_name=validated_data['company_name'],
+                                   representer=validated_data['representer'],
+                                   )
         user.set_password(validated_data['password'])
         user.save()
         return user

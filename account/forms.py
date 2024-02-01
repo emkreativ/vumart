@@ -28,7 +28,7 @@ class NewUserForm(UserCreationForm):
 	email = forms.CharField(max_length=100,required=False)
 	class Meta:
 		model = User
-		fields = ("username", "first_name","name","telephone","password1","email", "password2")
+		fields = ("username", "first_name","company_name","telephone","password1","email", "password2")
 
 	def save(self, commit=True):
 		user = super(NewUserForm, self).save(commit=False)

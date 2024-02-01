@@ -7,8 +7,8 @@ from catalog.models import Product
 
 
 class CustomUser(AbstractUser):
-    username = models.CharField(verbose_name='Telefon', unique=True, max_length=128, null=True, blank=True)
-    name = models.CharField(max_length=128, null=True, blank=True)
+    username = models.CharField(verbose_name='voen', unique=True, max_length=128, null=True, blank=True)
+    company_name = models.CharField(max_length=128, null=True, blank=True)
     telephone = models.CharField(max_length=128, null=True, blank=True)
     representer = models.CharField(max_length=128, null=True, blank=True)
     email = models.EmailField(max_length=128, unique=True, null=True, blank=True)
@@ -30,8 +30,7 @@ class CustomUser(AbstractUser):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        first_name_field = self._meta.get_field('first_name')
-        first_name_field.verbose_name = 'İstİfadəçİ  Adı'
+
 
         date_joined_field = self._meta.get_field('date_joined')
         date_joined_field.verbose_name = 'QEYDİYYAT TARİXİ'
